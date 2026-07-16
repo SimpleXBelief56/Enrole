@@ -20,7 +20,7 @@
 	var match = ownSrc.match(/Enrole@([^/]+)\//);
 	var sha = match ? match[1] : (window.cf_jsdelivr_sha || 'main');
 	window.cf_jsdelivr_sha = sha;
-	var base = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@' + sha + '/';
+	var base = 'https://cdn.jsdelivr.net/gh/SimpleXBelief56/Enrole@' + sha + '/';
 	loadAll(base + 'scripts/', base);
 
 	function loadAll(scriptBase, cssBase) {

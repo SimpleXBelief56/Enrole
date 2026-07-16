@@ -11,7 +11,7 @@ if (!String.prototype.startsWith) {
 // Resolve the latest commit SHA, then load loader.js at that SHA.
 // This file itself never needs to change — all script/CSS management lives in loader.js.
 (function () {
-	var CDN = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@';
+	var CDN = 'https://cdn.jsdelivr.net/gh/SimpleXBelief56/Enrole@';
 
 	function loadLoader(sha) {
 		window.cf_jsdelivr_sha = sha;
@@ -20,7 +20,7 @@ if (!String.prototype.startsWith) {
 		document.head.appendChild(s);
 	}
 
-	fetch('https://api.github.com/repos/Bergen-Community-College/Enrole/git/ref/heads/main')
+	fetch('https://api.github.com/repos/SimpleXBelief56/Enrole/git/ref/heads/main')
 		.then(function (r) { return r.json(); })
 		.then(function (data) {
 			loadLoader(data.object.sha.slice(0, 7));
