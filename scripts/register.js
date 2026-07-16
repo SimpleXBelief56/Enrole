@@ -165,6 +165,60 @@
 		formTable.parentNode.insertBefore(errorBox, formTable);
 		formTable.insertAdjacentElement('afterend', nav);
 
+		/*
+		 * Single page heading: the platform's own "Create a Profile"
+		 * h1.subHeader becomes the page title (Oswald style via the
+		 * .subHeader--page-title class). Script load order is not
+		 * deterministic, so if subHeader.js already injected its own title
+		 * ("Sign Up", from document.title), drop it and its description;
+		 * if it runs after us, its own guard sees the class and skips.
+		 */
+		var injectedTitle = document.querySelector('.subHeader--page-title');
+		if (injectedTitle) {
+			var injectedDesc = injectedTitle.nextElementSibling;
+			if (injectedDesc && injectedDesc.classList.contains('subHeaderDescription')) {
+				injectedDesc.parentNode.removeChild(injectedDesc);
+			}
+			injectedTitle.parentNode.removeChild(injectedTitle);
+		}
+		var pageHeader = document.querySelector('#maincontent h1.subHeader');
+		if (pageHeader) {
+			pageHeader.classList.add('subHeader--page-title');
+			pageHeader.textContent = pageHeader.textContent.trim();
+		}
+
+		/*
+		 * The platform renders its intro box ("Please provide your personal
+		 * information below…") as the first row of the form table, visible on
+		 * every step. Move the box directly under the page heading and show
+		 * it on Step 1 only. Step 5 gets its own box explaining that the
+		 * demographic questions are optional.
+		 */
+		var introNote = formTable.querySelector('.note');
+		if (introNote) {
+			var introNoteRow = introNote.closest('tr');
+			if (pageHeader) {
+				pageHeader.insertAdjacentElement('afterend', introNote);
+			} else {
+				formTable.parentNode.insertBefore(introNote, indicator);
+			}
+			if (introNoteRow && introNoteRow.parentNode) {
+				introNoteRow.parentNode.removeChild(introNoteRow);
+			}
+		}
+
+		var aboutNote = document.createElement('div');
+		aboutNote.className = 'note';
+		aboutNote.id = 'cf-wizard-about-note';
+		aboutNote.textContent = 'These questions are optional, but your responses help us better understand our community and develop programs and services that meet student needs.';
+		if (introNote) {
+			introNote.insertAdjacentElement('afterend', aboutNote);
+		} else if (pageHeader) {
+			pageHeader.insertAdjacentElement('afterend', aboutNote);
+		} else {
+			formTable.parentNode.insertBefore(aboutNote, indicator);
+		}
+
 		// A row is platform-hidden when the platform toggled class="hidden" on it.
 		// We must not override this with our own inline style on the active step,
 		// so conditional fields (e.g. citizenship details) continue to show/hide
@@ -236,6 +290,10 @@
 			currentStep = step;
 			paintStep(step);
 			renderIndicator();
+
+			// Intro box on Step 1 only; optional-questions box on the last step
+			if (introNote) introNote.style.display = step === 0 ? '' : 'none';
+			aboutNote.style.display = step === STEPS.length - 1 ? '' : 'none';
 
 			backBtn.style.display   = step === 0 ? 'none' : '';
 			nextBtn.style.display   = step < STEPS.length - 1 ? '' : 'none';

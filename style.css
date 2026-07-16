@@ -174,6 +174,30 @@ table:has(tr:first-child h1.subHeader) {
 }
 /* Border removed by request — was: border: 7px solid #ddd; */
 
+/*
+ * Category pages only (html.cf-category-page is set by utils.js on
+ * index.jsp?categoryId=… pages, never on the homepage): tighten the gap
+ * between the "Upcoming Courses" / "All … Courses" headings and the first
+ * course listed under each.
+ */
+html.cf-category-page table:has(tr:first-child h1.subHeader) h1.subHeader {
+  margin-bottom: 0;
+}
+html.cf-category-page .upcomingCourse ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+html.cf-category-page .upcomingCourse li h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+html.cf-category-page h1.subHeader:has(+ div.courses) {
+  margin-bottom: 0.5rem;
+}
+html.cf-category-page h1.subHeader + div.courses h2.subheadinglink {
+  margin-top: 0;
+}
+
 #instructorinner ul {
   margin: 0;
   padding: 0;
@@ -548,13 +572,15 @@ table:has(tr:first-child h1.subHeader) {
 #login input.text::placeholder {
   color: #545454;
 }
+/* Orange action buttons (header Sign In, inline + bottom Add to Cart, cart
+   Checkout) all share the checkout pill style: 50px radius, #E65C00 hover */
 #login input.submit,
 .cartOption input.submit,
 .cf-inline-submit-row input.submit {
   color: #fff;
   background-color: #ff6600;
   border: 0;
-  border-radius: 6px;
+  border-radius: 50px;
   font-family: inherit;
   font-size: inherit;
   margin: 5px;
@@ -563,14 +589,6 @@ table:has(tr:first-child h1.subHeader) {
 #login input.submit:hover,
 .cartOption input.submit:hover,
 .cf-inline-submit-row input.submit:hover {
-  color: #000;
-  background-color: #ffb380;
-}
-/* Cart Checkout button — match the orange pill style of .cartOption a */
-.cartOption input.submit {
-  border-radius: 50px;
-}
-.cartOption input.submit:hover {
   color: #fff;
   background-color: #E65C00;
 }
@@ -708,6 +726,7 @@ table:has(tr:first-child h1.subHeader) {
   color: #fff;
   text-transform: none;
   font-weight: bold;
+  border-radius: 50px;
 }
 .logform button:hover,
 .logform button:focus {
@@ -722,9 +741,20 @@ table:has(tr:first-child h1.subHeader) {
 }
 .logform button[type="submit"]:hover,
 .logform button[type="submit"]:focus {
-  background: #ff8c4d;
+  background: #E65C00;
   color: #fff;
   font-weight: bold;
+}
+/* Profile page buttons (platform teal by default) match the checkout pill */
+.profileOption input.submit {
+  color: #fff;
+  background-color: #ff6600;
+  border: 0;
+  border-radius: 50px;
+}
+.profileOption input.submit:hover {
+  color: #fff;
+  background-color: #E65C00;
 }
 .logform .forgotPw {
   color: inherit;
@@ -770,6 +800,9 @@ hr {
 label {
   font-weight: bold;
 }
+tr.reqUDFRow label {
+  font-weight: normal;
+}
 .note {
   width: auto;
   color: inherit;
@@ -800,9 +833,12 @@ tr:has(#keycode) {
   background-color: #E65C00;
   color: #fff;
 }
-/* Make the Back link and Next/Checkout button equal width */
+/* Make the Back link and Next/Checkout button equal width. The inline
+   Add to Cart (.cf-inline-submit-row) gets the same metrics so it is
+   identical to the cartOption Add to Cart at the bottom of the page. */
 .cartOption a,
-.cartOption input.submit {
+.cartOption input.submit,
+.cf-inline-submit-row input.submit {
   display: inline-block;
   box-sizing: border-box;
   min-width: 120px;
@@ -810,6 +846,7 @@ tr:has(#keycode) {
   padding: 8px 24px;
   line-height: 1.5;
   font-size: 1rem;
+  font-weight: bold;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -821,7 +858,8 @@ tr:has(#keycode) {
 }
 /* Remove the focus ring on click, keep it for keyboard navigation */
 .cartOption a:focus:not(:focus-visible),
-.cartOption input.submit:focus:not(:focus-visible) {
+.cartOption input.submit:focus:not(:focus-visible),
+.cf-inline-submit-row input.submit:focus:not(:focus-visible) {
   outline: none;
 }
 #cartOption a::after {
