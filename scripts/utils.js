@@ -1,4 +1,13 @@
 (function () {
+	// Tag category pages (index.jsp with a categoryId other than ROOT) on
+	// <html> so style.css can scope category-only tweaks (heading spacing)
+	// without touching the homepage (bare index.jsp or categoryId=ROOT).
+	// Runs immediately — before first paint — so the rules never flash.
+	var catMatch = location.search.match(/[?&]categoryId=([^&]*)/);
+	if (/index\.jsp$/.test(location.pathname) && catMatch && catMatch[1] && catMatch[1] !== 'ROOT') {
+		document.documentElement.classList.add('cf-category-page');
+	}
+
 	var hiddenNavItems = [
 		'FC89CDF8',
 		'FD88EE78'
@@ -57,6 +66,19 @@
 		}
 	}
 
+	// Checkout Summary Review: the platform emits a "Review Your Courses"
+	// subheader above the course list — remove it (no HTML control, so we
+	// match on the heading text).
+	function removeCheckoutReviewHeader() {
+		if (location.pathname.indexOf('checkout.jsp') === -1) return;
+		var headings = document.querySelectorAll('h1, h2, h3, .subHeader');
+		for (var i = 0; i < headings.length; i++) {
+			if (headings[i].textContent.trim() === 'Review Your Courses') {
+				headings[i].parentNode.removeChild(headings[i]);
+			}
+		}
+	}
+
 	function applyUtils() {
 		hiddenNavItems.forEach(function (id) {
 			var el = document.getElementById('nav' + id);
@@ -65,6 +87,7 @@
 		addInlineRegisterButton();
 		splitUpcomingCourses();
 		fitCardText();
+		removeCheckoutReviewHeader();
 	}
 
 	if (document.readyState === 'loading') {

@@ -13,6 +13,11 @@
 		// with "index.jsp" (no categoryId / query string).
 		if ((location.pathname + location.search).endsWith('index.jsp')) return;
 
+		// A page-title heading may already exist (register.js promotes the
+		// platform's own "Create a Profile" heading on the registration
+		// wizard) — never add a second one.
+		if (document.querySelector('.subHeader--page-title')) return;
+
 		var label = cleanTitle(document.title);
 		if (!label) return;
 
