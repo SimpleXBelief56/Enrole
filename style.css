@@ -114,6 +114,11 @@ a:focus .subheadinglink a:hover,
   margin-left: 2em;
   color: #3e0c70;
 }
+
+.courseinner > a:hover{
+  color: #6210b4;
+}
+
 .courseinner > br {
   display: none;
 }
