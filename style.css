@@ -112,6 +112,7 @@ a:focus .subheadinglink a:hover,
   list-style-type: square;
   padding: 0;
   margin-left: 2em;
+  color: #3e0c70;
 }
 .courseinner > br {
   display: none;
@@ -155,6 +156,7 @@ a:focus .subheadinglink a:hover,
   display: grid;
   justify-content: space-between;
   align-items: baseline;
+  color: #3e0c70;
   /* gap: 1em; */
   
 }
@@ -516,7 +518,7 @@ html.cf-category-page h1.subHeader + div.courses h2.subheadinglink {
 #header_title img {
   float: none;
   width: auto;
-  height: 70px;
+  height: 90px;
 }
 #cartCount {
   padding-top: 0;
@@ -924,6 +926,7 @@ a:focus-visible,
 #content .subheadinglink a {
   padding: 0 0 10px;
   display: inline-block;
+  color: #3e0c70;
 }
 .courses a:focus-visible {
   font-size: 0.813rem;
