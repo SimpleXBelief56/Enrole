@@ -112,8 +112,13 @@ a:focus .subheadinglink a:hover,
   list-style-type: square;
   padding: 0;
   margin-left: 2em;
-  color: #3e0c70;
+  color: #3e0c83;
 }
+
+.courseinner > a:hover{
+  color: #5b21b6;
+}
+
 .courseinner > br {
   display: none;
 }
