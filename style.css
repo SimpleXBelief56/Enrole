@@ -1105,6 +1105,9 @@ a:focus-visible,
   }
   .leftMenu > ul.cf-mobile-open li i {
     font-size: 1.1em;
+    display: inline-flex;
+    justify-content: center;
+    width: 20px;
   }
   .leftMenu > ul.cf-mobile-open li.cf-menu-section-header {
     padding: 13px 15px;
@@ -1147,7 +1150,7 @@ a:focus-visible,
     max-width: 60%;
   }
   #header_title img {
-    height: 48px;
+    height: 65px;
   }
   #cartCount {
     font-size: 0.9rem;
@@ -1680,6 +1683,7 @@ input:focus-visible {
 .custom_footer_col {
   flex: 1;
   padding: 0 20px;
+  margin-top: 3%;
 }
 
 .custom_footer_col h3 {
