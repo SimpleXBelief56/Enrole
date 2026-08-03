@@ -1697,6 +1697,9 @@ input:focus-visible {
 
 .leftMenu ul li a i {
   border: 0;
+  display: inline-flex;
+  justify-content: center;
+  width: 20px;
 }
 .leftMenu ul li a:has(i) {
   padding: 20px;
