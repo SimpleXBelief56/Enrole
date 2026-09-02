@@ -23,7 +23,9 @@
 				'rowcompanyAdministrator',
 				'rowfirstName',
 				'rowlastName',
-				'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH'
+				'UDTESTCEBERGENCOLLEAGUEPREFERRED',
+				'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
+				'rowgender'
 			]
 		},
 		{
