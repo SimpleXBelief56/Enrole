@@ -23,7 +23,7 @@
 				'rowcompanyAdministrator',
 				'rowfirstName',
 				'rowlastName',
-				'UDTESTCEBERGENCOLLEAGUEPREFERRED',
+				'rowUDTESTCEBERGENCOLLEAGUEPREFERRED',
 				'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
 				'rowgender'
 			]
