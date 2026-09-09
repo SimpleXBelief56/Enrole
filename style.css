@@ -1679,6 +1679,10 @@ input:focus-visible {
   padding: 30px 0;
   border-top: solid 1px #A6A6A6;
 }
+.cf_email{
+  margin: 0px;
+  margin-bottom: 5px;
+}
 .cf_footer_brand {
   color: #545454;
   text-align: left;
