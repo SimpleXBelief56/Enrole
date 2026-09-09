@@ -1,7 +1,8 @@
 (function () {
   var HIDE_ITEMS = [
     "instructorListing.jsp",
-    "logout.jsp"
+    "logout.jsp",
+    "calendar.jsp"
   ];
 
   var MENU_ITEMS = [
@@ -15,11 +16,6 @@
       href: "categoryId=C6B87DC8",
       icon: "fa-solid fa-location-dot",
       label: "Courses by Location",
-    },
-    {
-      href: "calendar.jsp",
-      icon: "fa-regular fa-calendar-days",
-      label: "Courses by Calendar",
     },
     {
       href: "cart.jsp",
