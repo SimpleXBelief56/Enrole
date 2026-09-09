@@ -1179,7 +1179,7 @@ a:focus-visible,
 
   a.imageCard span.cardText{
     font-size: x-large;
-    padding: 1.5-rem;
+    padding: 1.5rem;
   }
 
   /* Registration wizard step indicator: allow horizontal scroll with
