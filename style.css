@@ -1177,6 +1177,11 @@ a:focus-visible,
     gap: 12px;
   }
 
+  a.imageCard span.cardText{
+    font-size: x-large;
+    padding: 1.5-rem;
+  }
+
   /* Registration wizard step indicator: allow horizontal scroll with
      snappy labels so 5 steps + 4 connectors don't crowd */
   #cf-wizard-steps {
