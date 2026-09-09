@@ -27,7 +27,8 @@
 		{
 			name: 'Paramus Campus',
 			address: '400 Paramus Road<br>Paramus, NJ 07652',
-			phone: '201-447-4700',
+			phone: '201-447-7488',
+			emailAddress: 'continuinged@bergen.edu',
 			directions: 'https://maps.google.com/?q=400+Paramus+Road,+Paramus,+NJ+07652'
 		},
 		{
@@ -39,13 +40,13 @@
 		{
 			name: 'Meadowlands Campus',
 			address: '1280 Wall Street West<br>Lyndhurst, NJ 07071',
-			phone: '201-301-9699',
+			phone: '201-447-7920',
 			directions: 'https://maps.google.com/?q=1280+Wall+Street+West,+Lyndhurst,+NJ+07071'
 		}
 	];
 
 	var resources = [
-		'<a href="https://bergen.edu/ce/ce-staff-directory/" target="_blank" rel="noopener">Staff Directory</a>',
+		'<a href="https://drive.google.com/file/d/1tT68skNVLUqR-Rc5gBTG5kBXLfc4zCBA/view?usp=sharing" target="_blank" rel="noopener">Staff Directory</a>',
 		'<a href="//ce.bergen.edu" target="_blank" rel="noopener">CE Career Support</a>',
 		'<a href="https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=010bf3a6-6a65-40e6-867b-0fdaf8595884&ccId=19000101_000001&lang=en_US" target="_blank" rel="noopener">Work at Bergen</a>',
 		'<a href="https://bergen.edu/ce/teaching-opportunities-proposals/" target="_blank" rel="noopener">Propose a Class</a>'
@@ -67,12 +68,22 @@
 	footer_host.style.setProperty('--cf-container-padding', container_padding);
 
 	function campusCol(c) {
+		var emailHtml = '';
+
+		if (c.emailAddress) {
+			emailHtml =
+				'<p class="cf_email"><a href="mailto:' + c.emailAddress + '">' +
+				c.emailAddress +
+				'</a></p>';
+		}
+
 		return '<div class="custom_footer_col">' +
-			'<h3>' + c.name + '</h3>' +
-			'<address>' + c.address + '</address>' +
-			'<p class="cf_phone">' + c.phone + '</p>' +
-			'<a href="' + c.directions + '" target="_blank" rel="noopener">Directions</a>' +
-			'</div>';
+				'<h3>' + c.name + '</h3>' +
+				'<address>' + c.address + '</address>' +
+				'<p class="cf_phone">' + c.phone + '</p>' +
+				emailHtml +
+				'<a href="' + c.directions + '" target="_blank" rel="noopener">Directions</a>' +
+				'</div>';
 	}
 
 	function linkCol(heading, links) {
