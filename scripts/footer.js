@@ -72,9 +72,9 @@
 
 		if (c.emailAddress) {
 			emailHtml =
-				'<p class="cf_email"><a href="mailto:' + c.emailAddress + '">' +
+				'<p class="cf_email">' +
 				c.emailAddress +
-				'</a></p>';
+				'</p>';
 		}
 
 		return '<div class="custom_footer_col">' +
