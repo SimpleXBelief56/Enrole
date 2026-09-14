@@ -331,6 +331,9 @@ html.cf-category-page h1.subHeader + div.courses h2.subheadinglink {
   color: #00022d;
   background: #cbcbcb;
 }
+#rowUDTESTCEBERGENETHNICGROUPS{
+  display: none;
+}
 .button.register {
   background-color: #ffcb06;
   color: #1c2b57;
