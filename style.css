@@ -831,7 +831,7 @@ tr.reqUDFRow label {
   color: #ff6600;
 }
 form#discountForm {
-  display: none;
+  display: initial;
 }
 /* Hide the Promotional Mailing Code row */
 tr:has(#keycode) {
