@@ -1721,6 +1721,8 @@ input:focus-visible {
 }
 .leftMenu ul li a:has(i) {
   padding: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .active {

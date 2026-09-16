@@ -38,6 +38,11 @@
       label: "Bergen for Business",
     },
     {
+      href: "categoryId=FAD3A180",
+      icon: "fa-solid fa-handshake",
+      label: "Career Services"
+    },
+    {
       href: "login.jsp",
       icon: "fa-solid fa-user",
       label: "Sign in/Create user profile",
