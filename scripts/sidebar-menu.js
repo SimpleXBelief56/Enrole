@@ -1,9 +1,32 @@
 (function () {
+  var sitePath = window.location.pathname.split("/")[1];
+  var isTest = sitePath === "testcebergen";
+  var isProduction = sitePath === "cebergen";
+
   var HIDE_ITEMS = [
     "instructorListing.jsp",
     "logout.jsp",
     "calendar.jsp"
   ];
+
+  var CATEGORYIDS = {
+    testcebergen: {
+      location: "C6B87DC8",
+      credentials: "87C83B68",
+      online: "87C950C0",
+      business: "87C9A6B0",
+      career: "FAD3A180"
+    },
+    cebergen: {
+      location: "8856D340",
+      credentials: "88B1CC50",
+      online: "8F5C18D0",
+      business: "884402D8",
+      career: "884EBCF0"
+    }
+  }
+
+  var categories = CATEGORYIDS[sitePath];
 
   var MENU_ITEMS = [
     {
@@ -13,7 +36,7 @@
       label: "Browse Courses",
     },
     {
-      href: "categoryId=C6B87DC8",
+      href: "categoryId=" + categories.location,
       icon: "fa-solid fa-location-dot",
       label: "Courses by Location",
     },
@@ -23,22 +46,22 @@
       label: "Registration Cart",
     },
     {
-      href: "categoryId=87C83B68",
+      href: "categoryId=" + categories.credentials,
       icon: "fa-solid fa-award",
       label: "Credential Programs",
     },
     {
-      href: "categoryId=87C950C0",
+      href: "categoryId=" + categories.online,
       icon: "fa-solid fa-laptop",
       label: "Partner Online Courses",
     },
     {
-      href: "categoryId=87C9A6B0",
+      href: "categoryId=" + categories.business,
       icon: "fa-solid fa-briefcase",
       label: "Bergen for Business",
     },
     {
-      href: "categoryId=FAD3A180",
+      href: "categoryId=" + categories.career,
       icon: "fa-solid fa-handshake",
       label: "Career Services"
     },
