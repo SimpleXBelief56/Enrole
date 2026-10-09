@@ -28,11 +28,6 @@
 
   var categories = CATEGORYIDS[sitePath];
 
-  if(!categories){
-    console.warn("Unknown Enrole environment: ", sitePath);
-    return;
-  }
-
   var MENU_ITEMS = [
     {
       href: "index.jsp",
