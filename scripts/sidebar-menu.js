@@ -10,7 +10,7 @@
   ];
 
   var CATEGORYIDS = {
-    testdebergen: {
+    testcebergen: {
       location: "C6B87DC8",
       credentials: "87C83B68",
       online: "87C950C0",
