@@ -45,15 +45,23 @@
 		}
 	];
 
+	// Test vs prod: site path first, ports as fallback (prod catalog runs on 443 → no port).
+	var isTest = /\/testcebergen\//.test(location.pathname) || location.port === '8443' || location.port === '8891';
+
+	var sitePath      = isTest ? 'testcebergen' : 'cebergen';
+	var catalogOrigin = isTest ? 'https://www.enrole.com:8443' : 'https://www.enrole.com';
+	var staffOrigin   = isTest ? 'https://www.enrole.com:8891' : 'https://www.enrole.com:8889';
+	var careerCatId   = isTest ? 'FAD4E5B8' : '884EBCF0';
+
 	var resources = [
 		'<a href="https://drive.google.com/file/d/1tT68skNVLUqR-Rc5gBTG5kBXLfc4zCBA/view?usp=sharing" target="_blank" rel="noopener">Staff Directory</a>',
-		'<a href="https://www.enrole.com:8443/testcebergen/jsp/index.jsp?categoryId=FAD4E5B8" target="_blank" rel="noopener">CE Career Support</a>',
+		'<a href="' + catalogOrigin + '/' + sitePath + '/jsp/index.jsp?categoryId=' + careerCatId + '" target="_blank" rel="noopener">CE Career Support</a>',
 		'<a href="https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=010bf3a6-6a65-40e6-867b-0fdaf8595884&ccId=19000101_000001&lang=en_US" target="_blank" rel="noopener">Work at Bergen</a>',
 		'<a href="https://bergen.edu/ce/teaching-opportunities-proposals/" target="_blank" rel="noopener">Propose a Class</a>'
 	];
 
 	var staff_links = [
-		'<a href="https://www.enrole.com:8891/testcebergen/Enrole.html" target="_blank" rel="noopener">Staff Login</a>',
+		'<a href="' + staffOrigin + '/' + sitePath + '/Enrole.html" target="_blank" rel="noopener">Staff Login</a>',
 		'<a href="http://workforcenow.adp.com/" target="_blank" rel="noopener">ADP</a>',
 		'<a href="https://www.aaiscloud.com/BergenCC/Calendars/DailyGridCalendar.aspx" target="_blank" rel="noopener">Ad Astra</a>'
 	];
