@@ -51,7 +51,7 @@
 	var sitePath      = isTest ? 'testcebergen' : 'cebergen';
 	var catalogOrigin = isTest ? 'https://www.enrole.com:8443' : 'https://www.enrole.com';
 	var staffOrigin   = isTest ? 'https://www.enrole.com:8891' : 'https://www.enrole.com:8889';
-	var careerCatId   = isTest ? 'FAD4E5B8' : '884EBCF0';
+	var careerCatId   = isTest ? 'FAD3A180' : '884EBCF0';
 
 	var resources = [
 		'<a href="https://drive.google.com/file/d/1tT68skNVLUqR-Rc5gBTG5kBXLfc4zCBA/view?usp=sharing" target="_blank" rel="noopener">Staff Directory</a>',
