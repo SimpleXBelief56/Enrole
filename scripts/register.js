@@ -6,6 +6,19 @@
 		return;
 	}
 
+	/**
+	 * Prepare For New Feature Methodology
+	 * 
+	 * - [ ] Create the five Page Break UDFs in `testcebergen`.
+	 * - [ ] Confirm that Enrole preserves their configured positions.
+	 * - [ ] Verify that JavaScript can detect each marker.
+	 * - [ ] Dynamically group registration fields into five pages.
+	 * - [ ] Ensure that all Page Break UDFs remain hidden from students.
+	 * - [ ] Add an ordinary registration field and verify that it appears on the correct page automatically.
+	 * - [ ] Remove and rearrange fields to verify that page grouping remains functional.
+	 * - [ ] Verify navigation, field validation, and registration submission.
+	 */
+
 	/*
 	 * Wizard step layout (5 steps) for addAttendee.jsp?source=register.
 	 *
