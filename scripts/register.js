@@ -28,6 +28,30 @@
 	 * anonymous row with no id. We tag those rows at runtime (see wrapRetypes)
 	 * so showStep() can control them like any other row.
 	 */
+
+
+	// Fetch form based on action
+	const form = [...document.querySelectorAll("form")].find(form => {
+		const action = new URL(form.action, location.href);
+
+		return action.pathname.endsWith('/form_addAttendee.jsp') && action.searchParams.get("source") === "register";
+	});
+
+	// If no form exists that meets the requirement, fall back to default form
+	if(!form){
+		throw new Error("Failed to fetch registration form");
+	}
+
+	// Fetch all form inputs
+	const rows = [...form.querySelectorAll("tr")].filter(tr => {
+		const hasFieldControl = [...tr.querySelectorAll('input, select, textarea')].some(
+			el=>
+				!["hidden", "submit", "button", "reset", "image"].includes(el.type)
+		);
+
+		return hasFieldControl;
+	})
+
 	var STEPS = [
 		{
 			title: 'Your Profile',
