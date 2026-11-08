@@ -52,67 +52,69 @@
 		return hasFieldControl;
 	})
 
-	var STEPS = [
-		{
-			title: 'Your Profile',
-			rows: [
-				'rowpersonType',
-				'rowcompanyAdministrator',
-				'rowfirstName',
-				'rowlastName',
-				'rowUDTESTCEBERGENCOLLEAGUEPREFERRED',
-				'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
-				'rowgender'
-			]
-		},
-		{
-			title: 'Login & Security',
-			rows: [
-				'rowemail',
-				'rowusername',
-				'rowpassword',
-				'rowretypepassword',
-				'rowsq',
-				'rowreminder',
-				'rowretypereminder'
-			]
-		},
-		{
-			title: 'Contact',
-			rows: [
-				'rowmobilePhone',
-				'rowaddress1',
-				'rowaddress2',
-				'rowcity',
-				'rowstate',
-				'rowzip',
-				'rowcountry'
-			]
-		},
-		{
-			title: 'Emergency Contacts',
-			rows: [
-				'rowUDTESTCEBERGENKTEMERGCONTACTNAME1',
-				'rowUDTESTCEBERGENKTEMERGPHONE1',
-				'rowUDTESTCEBERGENKTEMERGCONTACTNAME2',
-				'rowUDTESTCEBERGENKTEMERGPHONE2'
-			]
-		},
-		{
-			title: 'About You',
-			rows: [
-				'rowUDTESTCEBERGENCITIZEN',
-				'rowUDTESTCEBERGENCITIZENSHIPPRIMARY',
-				'rowUDTESTCEBERGENCITIZENSTATUS',
-				'rowUDTESTCEBERGENVISATYPE',
-				'rowUDTESTCEBERGENGENDER',
-				'rowUDTESTCEBERGENCOLLEAGUEETHNICITY',
-				'rowUDTESTCEBERGENETHNICGROUPS',
-				'rowUDTESTCEBERGENTEXTMESSAGING',
-				'rowUDTESTCEBERGENCOLLEAGUERACES',
-			]
-		}
-	];
+	var STEPS = getFormSteps(rows);
+
+	// var STEPS = [
+	// 	{
+	// 		title: 'Your Profile',
+	// 		rows: [
+	// 			'rowpersonType',
+	// 			'rowcompanyAdministrator',
+	// 			'rowfirstName',
+	// 			'rowlastName',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEPREFERRED',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
+	// 			'rowgender'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Login & Security',
+	// 		rows: [
+	// 			'rowemail',
+	// 			'rowusername',
+	// 			'rowpassword',
+	// 			'rowretypepassword',
+	// 			'rowsq',
+	// 			'rowreminder',
+	// 			'rowretypereminder'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Contact',
+	// 		rows: [
+	// 			'rowmobilePhone',
+	// 			'rowaddress1',
+	// 			'rowaddress2',
+	// 			'rowcity',
+	// 			'rowstate',
+	// 			'rowzip',
+	// 			'rowcountry'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Emergency Contacts',
+	// 		rows: [
+	// 			'rowUDTESTCEBERGENKTEMERGCONTACTNAME1',
+	// 			'rowUDTESTCEBERGENKTEMERGPHONE1',
+	// 			'rowUDTESTCEBERGENKTEMERGCONTACTNAME2',
+	// 			'rowUDTESTCEBERGENKTEMERGPHONE2'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'About You',
+	// 		rows: [
+	// 			'rowUDTESTCEBERGENCITIZEN',
+	// 			'rowUDTESTCEBERGENCITIZENSHIPPRIMARY',
+	// 			'rowUDTESTCEBERGENCITIZENSTATUS',
+	// 			'rowUDTESTCEBERGENVISATYPE',
+	// 			'rowUDTESTCEBERGENGENDER',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEETHNICITY',
+	// 			'rowUDTESTCEBERGENETHNICGROUPS',
+	// 			'rowUDTESTCEBERGENTEXTMESSAGING',
+	// 			'rowUDTESTCEBERGENCOLLEAGUERACES',
+	// 		]
+	// 	}
+	// ];
 
 	/*
 	 * The platform renders retypepassword / retypereminder as bare <td> cells
@@ -133,6 +135,61 @@
 			if (!tr.id) tr.id = p.row;
 			console.log('[register.js] wrapped ' + p.input + ' into #' + p.row);
 		});
+	}
+
+	/**
+	 * Extracts the page number from a page-break row id, such as rowUD..PAGE_1
+	 * Returns null if the row is not a recognized page-break marker
+	 * 
+	 */
+	function getPageBreakNumber(row){
+		const match = row.id.match(/^rowUD.*PAGE_(\d+)$/i);
+		return match ? Number(match[1]) : null;
+	}
+
+	// Build Out Form Steps
+	function getFormSteps(rows){
+		var STEPS = [];
+		var currentRow = [];
+
+		rows.forEach(r => {
+			var pageBreakNumber = getPageBreakNumber(r);
+
+			if(pageBreakNumber == null){
+				currentRow.push(r.id);
+				return;
+			}
+			
+
+			if(pageBreakNumber !== null){
+				if(currentRow.length > 0){
+					STEPS.push({
+						title: `${pageBreakNumber}`,
+						rows: [...currentRow]
+					});
+				}
+				currentRow = [];
+			}
+		});
+
+		/**
+		 * Determine what would happen if page breaker doesnt exist at the end of the items
+		 *  => rowUDFirstName
+		 *  => rowUDLastName
+		 *  => rowUDDOB
+		 *  => rowUDPageBreak_1
+		 *  => rowAddress
+		 *  => rowCity
+		 *  => rowZipCode
+		 *  => rowState
+		 *  (No Page Break)
+		 * 
+		 *  What should we do with the remaining items after PageBreak_1
+		 *     => Create a temporary title (Page {x+1}) [If Page 4 before: then Page 5 next]
+		 *     => Fall Back to default form, consider it broken form
+		 */
+
+		return STEPS;
 	}
 
 	function init() {
