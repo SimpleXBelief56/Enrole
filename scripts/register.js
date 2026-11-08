@@ -30,29 +30,6 @@
 	 */
 
 
-	// Fetch form based on action
-	const form = [...document.querySelectorAll("form")].find(form => {
-		const action = new URL(form.action, location.href);
-
-		return action.pathname.endsWith('/form_addAttendee.jsp') && action.searchParams.get("source") === "register";
-	});
-
-	// If no form exists that meets the requirement, fall back to default form
-	if(!form){
-		throw new Error("Failed to fetch registration form");
-	}
-
-	// Fetch all form inputs
-	const rows = [...form.querySelectorAll("tr")].filter(tr => {
-		const hasFieldControl = [...tr.querySelectorAll('input, select, textarea')].some(
-			el=>
-				!["hidden", "submit", "button", "reset", "image"].includes(el.type)
-		);
-
-		return hasFieldControl;
-	})
-
-	var STEPS = getFormSteps(rows);
 
 	// var STEPS = [
 	// 	{
@@ -155,6 +132,10 @@
 		rows.forEach(r => {
 			var pageBreakNumber = getPageBreakNumber(r);
 
+			if(pageBreakNumber !== null){
+				r.classList.add("page-break-hidden");
+			}
+
 			if(pageBreakNumber == null){
 				currentRow.push(r.id);
 				return;
@@ -195,12 +176,38 @@
 	function init() {
 		console.log('[register.js] init() called');
 
-		var form = document.querySelector('form[action*="form_addAttendee"]');
-		console.log('[register.js] form found:', form);
-		if (!form) {
-			console.warn('[register.js] form not found — selector: form[action*="form_addAttendee"]');
-			return;
+		// var form = document.querySelector('form[action*="form_addAttendee"]');
+		// console.log('[register.js] form found:', form);
+		// if (!form) {
+		// 	console.warn('[register.js] form not found — selector: form[action*="form_addAttendee"]');
+		// 	return;
+		// }
+
+		// Fetch form based on action
+		const form = [...document.querySelectorAll("form")].find(form => {
+			const action = new URL(form.action, location.href);
+
+			return action.pathname.endsWith('/form_addAttendee.jsp') && action.searchParams.get("source") === "register";
+		});
+
+		// If no form exists that meets the requirement, fall back to default form
+		if(!form){
+			throw new Error("Failed to fetch registration form");
 		}
+
+		wrapRetypes();
+
+		// Fetch all form inputs
+		const rows = [...form.querySelectorAll("tr")].filter(tr => {
+			const hasFieldControl = [...tr.querySelectorAll('input, select, textarea')].some(
+				el=>
+					!["hidden", "submit", "button", "reset", "image"].includes(el.type)
+			);
+
+			return hasFieldControl;
+		})
+
+		var STEPS = getFormSteps(rows);
 
 		// Platform foster-parenting means the form is extracted out of the
 		// table and ends up as a sibling. Anchor everything to the table that
@@ -214,8 +221,6 @@
 			console.warn('[register.js] could not find form table via #rowpersonType');
 			return;
 		}
-
-		wrapRetypes();
 
 		// Tracks which missing-row ids we've already warned about, so each
 		// platform UDF rename only logs once. Must be initialized before

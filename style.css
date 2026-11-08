@@ -223,6 +223,11 @@ html.cf-category-page h1.subHeader + div.courses h2.subheadinglink {
 .lead {
   font-size: 125%;
 }
+
+.page-break-hidden{
+  display: none !important;
+}
+
 #header table,
 #wholeContent,
 #footer {
