@@ -124,28 +124,40 @@
 		return match ? Number(match[1]) : null;
 	}
 
+	function getPageBreakSchema(row){
+		const idMatch = row.id.match(/^rowUD.*PAGE_(\d+)$/i);
+		if(!idMatch) return null;
+
+		const label = row.querySelector("label")?.textContent.trim() || "";
+		const schema = label.match(/^\(\s*(\d+)\s*,\s*(.+?)\s*\)$/);
+
+		const number = Number(schema?.[1] ?? idMatch[1]);
+
+		return {number, title: schema?.[2]?.trim()} || `{age ${number}`;
+	}
+
 	// Build Out Form Steps
 	function getFormSteps(rows){
 		var STEPS = [];
 		var currentRow = [];
 
 		rows.forEach(r => {
-			var pageBreakNumber = getPageBreakNumber(r);
+			var pageBreakSchema = getPageBreakSchema(r);
 
-			if(pageBreakNumber !== null){
+			if(pageBreakSchema !== null){
 				r.classList.add("page-break-hidden");
 			}
 
-			if(pageBreakNumber == null){
+			if(pageBreakSchema == null){
 				currentRow.push(r.id);
 				return;
 			}
 			
 
-			if(pageBreakNumber !== null){
+			if(pageBreakSchema !== null){
 				if(currentRow.length > 0){
 					STEPS.push({
-						title: `${pageBreakNumber}`,
+						title: pageBreakSchema.title,
 						rows: [...currentRow]
 					});
 				}
