@@ -141,7 +141,7 @@
 		var STEPS = [];
 		var currentRow = [];
 
-		rows.forEach(r => {
+		rows.forEach((r, i) => {
 			var pageBreakSchema = getPageBreakSchema(r);
 
 			if(pageBreakSchema !== null){
@@ -150,6 +150,16 @@
 
 			if(pageBreakSchema == null){
 				currentRow.push(r.id);
+
+				/**
+				 * If no page break at the end of the row
+				 * then push the remaining rows to the end of the
+				 * stack of STEPS
+				 *
+				 * */
+				if(i == rows.length - 1 && STEPS.length > 0){
+					STEPS[STEPS.length - 1].rows.push(...currentRow);
+				}
 				return;
 			}
 			
