@@ -424,9 +424,6 @@
 			submitBtn.style.display = step === STEPS.length - 1 ? '' : 'none';
 
 			clearErrors();
-
-			var top = indicator.getBoundingClientRect().top + window.scrollY - 20;
-			window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 		}
 
 		function clearErrors() {
