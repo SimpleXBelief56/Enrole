@@ -154,7 +154,7 @@
 				/**
 				 * If no page break at the end of the row
 				 * then push the remaining rows to the end of the
-				 * stack of STEPS
+				 * rows of STEPS array
 				 *
 				 * */
 				if(i == rows.length - 1 && STEPS.length > 0){
