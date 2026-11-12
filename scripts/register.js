@@ -129,11 +129,12 @@
 		if(!idMatch) return null;
 
 		const label = row.querySelector("label")?.textContent.trim() || "";
-		const schema = label.match(/^\(\s*(\d+)\s*,\s*(.+?)\s*\)$/);
+		const schema = label.match(/^\(\s*(\d+)\s*,\s*(.*?)\s*\)$/);
 
 		const number = Number(schema?.[1] ?? idMatch[1]);
+		const title = schema?.[2]?.trim() || `Step ${number}`;
 
-		return {number, title: schema?.[2]?.trim()} || `{age ${number}`;
+		return {number, title};
 	}
 
 	// Build Out Form Steps
