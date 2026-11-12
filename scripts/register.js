@@ -6,6 +6,19 @@
 		return;
 	}
 
+	/**
+	 * Prepare For New Feature Methodology
+	 * 
+	 * - [ ] Create the five Page Break UDFs in `testcebergen`.
+	 * - [ ] Confirm that Enrole preserves their configured positions.
+	 * - [ ] Verify that JavaScript can detect each marker.
+	 * - [ ] Dynamically group registration fields into five pages.
+	 * - [ ] Ensure that all Page Break UDFs remain hidden from students.
+	 * - [ ] Add an ordinary registration field and verify that it appears on the correct page automatically.
+	 * - [ ] Remove and rearrange fields to verify that page grouping remains functional.
+	 * - [ ] Verify navigation, field validation, and registration submission.
+	 */
+
 	/*
 	 * Wizard step layout (5 steps) for addAttendee.jsp?source=register.
 	 *
@@ -15,67 +28,70 @@
 	 * anonymous row with no id. We tag those rows at runtime (see wrapRetypes)
 	 * so showStep() can control them like any other row.
 	 */
-	var STEPS = [
-		{
-			title: 'Your Profile',
-			rows: [
-				'rowpersonType',
-				'rowcompanyAdministrator',
-				'rowfirstName',
-				'rowlastName',
-				'rowUDTESTCEBERGENCOLLEAGUEPREFERRED',
-				'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
-				'rowgender'
-			]
-		},
-		{
-			title: 'Login & Security',
-			rows: [
-				'rowemail',
-				'rowusername',
-				'rowpassword',
-				'rowretypepassword',
-				'rowsq',
-				'rowreminder',
-				'rowretypereminder'
-			]
-		},
-		{
-			title: 'Contact',
-			rows: [
-				'rowmobilePhone',
-				'rowaddress1',
-				'rowaddress2',
-				'rowcity',
-				'rowstate',
-				'rowzip',
-				'rowcountry'
-			]
-		},
-		{
-			title: 'Emergency Contacts',
-			rows: [
-				'rowUDTESTCEBERGENKTEMERGCONTACTNAME1',
-				'rowUDTESTCEBERGENKTEMERGPHONE1',
-				'rowUDTESTCEBERGENKTEMERGCONTACTNAME2',
-				'rowUDTESTCEBERGENKTEMERGPHONE2'
-			]
-		},
-		{
-			title: 'About You',
-			rows: [
-				'rowUDTESTCEBERGENCITIZEN',
-				'rowUDTESTCEBERGENCITIZENSHIPPRIMARY',
-				'rowUDTESTCEBERGENCITIZENSTATUS',
-				'rowUDTESTCEBERGENVISATYPE',
-				'rowUDTESTCEBERGENGENDER',
-				'rowUDTESTCEBERGENCOLLEAGUEETHNICITY',
-				'rowUDTESTCEBERGENETHNICGROUPS',
-				'rowUDTESTCEBERGENTEXTMESSAGING',
-				'rowUDTESTCEBERGENCOLLEAGUERACES',
-			]
-		}
-	];
+
+
+
+	// var STEPS = [
+	// 	{
+	// 		title: 'Your Profile',
+	// 		rows: [
+	// 			'rowpersonType',
+	// 			'rowcompanyAdministrator',
+	// 			'rowfirstName',
+	// 			'rowlastName',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEPREFERRED',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEDATEOFBIRTH',
+	// 			'rowgender'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Login & Security',
+	// 		rows: [
+	// 			'rowemail',
+	// 			'rowusername',
+	// 			'rowpassword',
+	// 			'rowretypepassword',
+	// 			'rowsq',
+	// 			'rowreminder',
+	// 			'rowretypereminder'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Contact',
+	// 		rows: [
+	// 			'rowmobilePhone',
+	// 			'rowaddress1',
+	// 			'rowaddress2',
+	// 			'rowcity',
+	// 			'rowstate',
+	// 			'rowzip',
+	// 			'rowcountry'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'Emergency Contacts',
+	// 		rows: [
+	// 			'rowUDTESTCEBERGENKTEMERGCONTACTNAME1',
+	// 			'rowUDTESTCEBERGENKTEMERGPHONE1',
+	// 			'rowUDTESTCEBERGENKTEMERGCONTACTNAME2',
+	// 			'rowUDTESTCEBERGENKTEMERGPHONE2'
+	// 		]
+	// 	},
+	// 	{
+	// 		title: 'About You',
+	// 		rows: [
+	// 			'rowUDTESTCEBERGENCITIZEN',
+	// 			'rowUDTESTCEBERGENCITIZENSHIPPRIMARY',
+	// 			'rowUDTESTCEBERGENCITIZENSTATUS',
+	// 			'rowUDTESTCEBERGENVISATYPE',
+	// 			'rowUDTESTCEBERGENGENDER',
+	// 			'rowUDTESTCEBERGENCOLLEAGUEETHNICITY',
+	// 			'rowUDTESTCEBERGENETHNICGROUPS',
+	// 			'rowUDTESTCEBERGENTEXTMESSAGING',
+	// 			'rowUDTESTCEBERGENCOLLEAGUERACES',
+	// 		]
+	// 	}
+	// ];
 
 	/*
 	 * The platform renders retypepassword / retypereminder as bare <td> cells
@@ -98,15 +114,122 @@
 		});
 	}
 
+	/**
+	 * Extracts the page number from a page-break row id, such as rowUD..PAGE_1
+	 * Returns null if the row is not a recognized page-break marker
+	 * 
+	 */
+	function getPageBreakNumber(row){
+		const match = row.id.match(/^rowUD.*PAGE_(\d+)$/i);
+		return match ? Number(match[1]) : null;
+	}
+
+	function getPageBreakSchema(row){
+		const idMatch = row.id.match(/^rowUD.*PAGE_(\d+)$/i);
+		if(!idMatch) return null;
+
+		const label = row.querySelector("label")?.textContent.trim() || "";
+		const schema = label.match(/^\(\s*(\d+)\s*,\s*(.+?)\s*\)$/);
+
+		const number = Number(schema?.[1] ?? idMatch[1]);
+
+		return {number, title: schema?.[2]?.trim()} || `{age ${number}`;
+	}
+
+	// Build Out Form Steps
+	function getFormSteps(rows){
+		var STEPS = [];
+		var currentRow = [];
+
+		rows.forEach((r, i) => {
+			var pageBreakSchema = getPageBreakSchema(r);
+
+			if(pageBreakSchema !== null){
+				r.classList.add("page-break-hidden");
+			}
+
+			if(pageBreakSchema == null){
+				currentRow.push(r.id);
+
+				/**
+				 * If no page break at the end of the row
+				 * then push the remaining rows to the end of the
+				 * rows of STEPS array
+				 *
+				 * */
+				if(i == rows.length - 1 && STEPS.length > 0){
+					STEPS[STEPS.length - 1].rows.push(...currentRow);
+				}
+				return;
+			}
+			
+
+			if(pageBreakSchema !== null){
+				if(currentRow.length > 0){
+					STEPS.push({
+						title: pageBreakSchema.title,
+						rows: [...currentRow]
+					});
+				}
+				currentRow = [];
+			}
+		});
+
+		/**
+		 * Determine what would happen if page breaker doesnt exist at the end of the items
+		 *  => rowUDFirstName
+		 *  => rowUDLastName
+		 *  => rowUDDOB
+		 *  => rowUDPageBreak_1
+		 *  => rowAddress
+		 *  => rowCity
+		 *  => rowZipCode
+		 *  => rowState
+		 *  (No Page Break)
+		 * 
+		 *  What should we do with the remaining items after PageBreak_1
+		 *     => Create a temporary title (Page {x+1}) [If Page 4 before: then Page 5 next]
+		 *     => Fall Back to default form, consider it broken form
+		 */
+
+		return STEPS;
+	}
+
 	function init() {
 		console.log('[register.js] init() called');
 
-		var form = document.querySelector('form[action*="form_addAttendee"]');
-		console.log('[register.js] form found:', form);
-		if (!form) {
-			console.warn('[register.js] form not found — selector: form[action*="form_addAttendee"]');
-			return;
+		// var form = document.querySelector('form[action*="form_addAttendee"]');
+		// console.log('[register.js] form found:', form);
+		// if (!form) {
+		// 	console.warn('[register.js] form not found — selector: form[action*="form_addAttendee"]');
+		// 	return;
+		// }
+
+		// Fetch form based on action
+		const form = [...document.querySelectorAll("form")].find(form => {
+			const action = new URL(form.action, location.href);
+
+			return action.pathname.endsWith('/form_addAttendee.jsp') && action.searchParams.get("source") === "register";
+		});
+
+		// If no form exists that meets the requirement, fall back to default form
+		if(!form){
+			throw new Error("Failed to fetch registration form");
 		}
+
+		wrapRetypes();
+
+		// Fetch all form inputs
+		const rows = [...form.querySelectorAll("tr")].filter(tr => {
+			const hasFieldControl = [...tr.querySelectorAll('input, select, textarea')].some(
+				el=>
+					!["hidden", "submit", "button", "reset", "image"].includes(el.type)
+			);
+
+			return hasFieldControl;
+		})
+
+		var STEPS = getFormSteps(rows);
 
 		// Platform foster-parenting means the form is extracted out of the
 		// table and ends up as a sibling. Anchor everything to the table that
@@ -120,8 +243,6 @@
 			console.warn('[register.js] could not find form table via #rowpersonType');
 			return;
 		}
-
-		wrapRetypes();
 
 		// Tracks which missing-row ids we've already warned about, so each
 		// platform UDF rename only logs once. Must be initialized before
@@ -303,9 +424,6 @@
 			submitBtn.style.display = step === STEPS.length - 1 ? '' : 'none';
 
 			clearErrors();
-
-			var top = indicator.getBoundingClientRect().top + window.scrollY - 20;
-			window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 		}
 
 		function clearErrors() {

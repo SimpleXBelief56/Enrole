@@ -21,3 +21,4 @@ htmlcov/
 *.so
 /scraper/venv
 .claude
+.vscode
