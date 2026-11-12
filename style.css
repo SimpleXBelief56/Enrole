@@ -826,9 +826,11 @@ tr.reqUDFRow label {
 }
 .note {
   width: auto;
-  color: inherit;
+  color: #FF6600;
   background: #bbbbbb2e;
   padding: 15px;
+  font-size: large;
+  font-weight: bold;
 }
 .cart a {
 }
