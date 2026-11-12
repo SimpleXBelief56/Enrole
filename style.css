@@ -832,8 +832,6 @@ tr.reqUDFRow label {
   font-size: large;
   font-weight: bold;
 }
-.cart a {
-}
 .cart a:focus-visible {
   color: #ff6600;
 }
