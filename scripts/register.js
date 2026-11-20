@@ -524,11 +524,17 @@
 		}
 
 		nextBtn.addEventListener('click', function () {
-			if (validateStep()) showStep(currentStep + 1);
+			if (validateStep()){
+				showStep(currentStep + 1);
+				var anchor = document.getElementById('cf-wizard-steps');
+				if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
 		});
 
 		backBtn.addEventListener('click', function () {
 			showStep(currentStep - 1);
+			var anchor = document.getElementById('cf-wizard-steps');
+			if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		});
 
 		submitBtn.addEventListener('click', function () {
