@@ -12,7 +12,7 @@ if (!String.prototype.startsWith) {
 // This file itself never needs to change — all script/CSS management lives in loader.js.
 (function () {
 	var CDN = 'https://cdn.jsdelivr.net/gh/SimpleXBelief56/Enrole@';
-	var BRANCH = "enrole-dynamic-registration-wizard-feature";
+	var BRANCH = "main";
 
 	function loadLoader(sha) {
 		window.cf_jsdelivr_sha = sha;
