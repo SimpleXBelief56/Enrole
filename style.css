@@ -223,6 +223,11 @@ html.cf-category-page h1.subHeader + div.courses h2.subheadinglink {
 .lead {
   font-size: 125%;
 }
+
+.page-break-hidden{
+  display: none !important;
+}
+
 #header table,
 #wholeContent,
 #footer {
@@ -821,11 +826,11 @@ tr.reqUDFRow label {
 }
 .note {
   width: auto;
-  color: inherit;
+  color: #FF6600;
   background: #bbbbbb2e;
   padding: 15px;
-}
-.cart a {
+  font-size: large;
+  font-weight: bold;
 }
 .cart a:focus-visible {
   color: #ff6600;
