@@ -1,0 +1,24 @@
+{
+  "name": "enrole",
+  "version": "1.0.0",
+  "description": "",
+  "main": "style.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimpleXBelief56/Enrole.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SimpleXBelief56/Enrole/issues"
+  },
+  "homepage": "https://github.com/SimpleXBelief56/Enrole#readme",
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
