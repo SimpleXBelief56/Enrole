@@ -1,0 +1,58 @@
+name: Enrole Test Build
+
+on:
+  push:
+    branches: [test]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: ${{ !github.event.deleted }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Build and check assets
+        run: |
+          npm ci
+          node build.mjs
+          test -s style.min.css
+          test -s enrole.min.js
+          node --check enrole.min.js
+
+      - name: Tag the built commit and publish the pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(printf 'e%05d' "$GITHUB_RUN_NUMBER")
+          git add -f -- style.min.css enrole.min.js
+
+          # Resume safely if a previous attempt pushed the tag.
+          if git ls-remote --exit-code origin "refs/tags/$tag" >/dev/null; then
+            git fetch origin "refs/tags/$tag:refs/tags/$tag"
+            git merge-base --is-ancestor "$GITHUB_SHA" "$tag"
+            git diff --cached --exit-code "$tag" --
+          else
+            if ! git diff --cached --quiet; then
+              git config user.name 'github-actions[bot]'
+              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+              git commit -m "Build Enrole test assets for $tag"
+            fi
+
+            git tag "$tag"
+            git push --atomic origin HEAD:refs/heads/test "refs/tags/$tag"
+          fi
+
+          if ! gh release view "$tag" >/dev/null 2>&1; then
+            gh release create "$tag" --verify-tag --prerelease --title "$tag" --generate-notes
+          fi
