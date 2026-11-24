@@ -56,3 +56,9 @@ jobs:
           if ! gh release view "$tag" >/dev/null 2>&1; then
             gh release create "$tag" --verify-tag --prerelease --title "$tag" --generate-notes
           fi
+
+          if ! gh release view "$tag" >/dev/null 2>&1; then
+            gh release create "$tag" --verify-tag --prerelease --title "$tag" --generate-notes
+          fi
+
+          gh release upload "$tag" style.min.css enrole.min.js --clobber
